@@ -41,11 +41,13 @@ class BatteryScreen extends StatelessWidget {
             backgroundColor: Theme.of(context).errorColor,
           );
 
-          if (state.currentLevel == 50 ||
-              state.currentLevel == 40 ||
-              state.currentLevel == 30 ||
-              state.currentLevel == 20) {
-            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          if (state.previousLevel > state.currentLevel) {
+            if (state.currentLevel == 50 ||
+                state.currentLevel == 40 ||
+                state.currentLevel == 30 ||
+                state.currentLevel == 20) {
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            }
           }
         },
         builder: (context, state) {

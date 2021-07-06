@@ -16,6 +16,11 @@ class BatteryCubit extends Cubit<BatteryState> {
   }
 
   void _onBattaryPowerChandeg(double value) {
-    emit(BatteryState(currentLevel: value));
+
+    if (state.isFirstStart) {
+      emit(BatteryState(currentLevel: value, previousLevel: value, isFirstStart: false));
+    } else {
+      emit(state.copyWith(currentLevel: value, previousLevel: state.currentLevel));
+    }
   }
 }
